@@ -8,10 +8,10 @@
 import ProjectDescription
 
 public extension TargetDependency {
-    enum Projcet {}
+    enum Project {}
 }
 
-public extension TargetDependency.Projcet {
+public extension TargetDependency.Project {
     static let Feature = TargetDependency.project(target: "Feature", path: .relativeToRoot("Projects/Feature"))
     static let ThirdPartyLibrary = TargetDependency.project(target: "ThirdPartyLibrary", path: .relativeToRoot("Projects/ThirdPartyLibrary"))
 }

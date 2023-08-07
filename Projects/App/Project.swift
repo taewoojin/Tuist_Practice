@@ -14,7 +14,7 @@ let project = Project.makeModule(
     platform: .iOS,
     product: .app,
     dependencies: [
-        .Projcet.Feature
+        .Project.Feature
     ],
     resources: ["Resources/**"]
 )
