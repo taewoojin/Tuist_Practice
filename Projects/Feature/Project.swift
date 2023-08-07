@@ -13,7 +13,7 @@ let project = Project.makeModule(
     name: "Feature",
     product: .staticFramework,
     dependencies: [
-        .Projcet.ThirdPartyLib
+        .Projcet.ThirdPartyLibrary
     ],
     resources: ["Resources/**"]
 )

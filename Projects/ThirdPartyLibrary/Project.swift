@@ -12,7 +12,8 @@ let project = Project.makeModule(
     name: "ThirdPartyLibrary",
     product: .framework,
     dependencies: [
-        .external(name: "SnapKit"),
-        .external(name: "Moya"),
+        .SPM.CombineMoya,
+        .SPM.Moya,
+        .SPM.SnapKit,
     ]
 )
