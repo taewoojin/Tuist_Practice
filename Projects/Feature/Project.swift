@@ -16,7 +16,6 @@ let project = Project.makeModule(
     settings: .settings(
         configurations: [
             .debug(name: "Dev", settings: [:], xcconfig: "Config/Dev.xcconfig"),
-            .debug(name: "Alpha", settings: [:], xcconfig: "Config/Alpha.xcconfig"),
             .debug(name: "Prod", settings: [:], xcconfig: "Config/Prod.xcconfig")
         ]
     ),
@@ -26,11 +25,6 @@ let project = Project.makeModule(
             environment: "Dev",
             target: .configuration("Dev"),
             hasTestAction: true
-        ),
-        .makeScheme(
-            name: name,
-            environment: "Alpha",
-            target: .configuration("Alpha")
         ),
         .makeScheme(
             name: name,

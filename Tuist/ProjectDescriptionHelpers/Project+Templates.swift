@@ -5,7 +5,7 @@ public extension Project {
         name: String,
         platform: Platform = .iOS,
         product: Product,
-        organizationName: String = "baegteun",
+        organizationName: String = "kmong",
         options: Project.Options = .options(),
         packages: [Package] = [],
         settings: ProjectDescription.Settings? = nil,
