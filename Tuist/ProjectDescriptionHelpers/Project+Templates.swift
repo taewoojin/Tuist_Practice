@@ -6,46 +6,39 @@ public extension Project {
         platform: Platform = .iOS,
         product: Product,
         organizationName: String = "baegteun",
+        options: Project.Options = .options(),
         packages: [Package] = [],
+        settings: ProjectDescription.Settings? = nil,
         deploymentTarget: DeploymentTarget? = .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
+        schemes: [Scheme] = [],
         dependencies: [TargetDependency] = [],
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
         infoPlist: InfoPlist = .default
     ) -> Project {
-        let settings: Settings = .settings(
-            base: [:],
-            configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
-            ], defaultSettings: .recommended)
-        
-        let appTarget = Target(
-            name: name,
-            platform: platform,
-            product: product,
-            bundleId: "\(organizationName).\(name)",
-            deploymentTarget: deploymentTarget,
-            infoPlist: infoPlist,
-            sources: sources,
-            resources: resources,
-            dependencies: dependencies
-        )
-        
-        let testTarget = Target(
-            name: "\(name)Tests",
-            platform: platform,
-            product: .unitTests,
-            bundleId: "\(organizationName).\(name)Tests",
-            deploymentTarget: deploymentTarget,
-            infoPlist: .default,
-            sources: ["Tests/**"],
-            dependencies: [.target(name: name)]
-        )
-        
-        let schemes: [Scheme] = [.makeScheme(target: .debug, name: name)]
-        
-        let targets: [Target] = [appTarget, testTarget]
+        let targets = [
+            Target(
+                name: name,
+                platform: platform,
+                product: product,
+                bundleId: "\(organizationName).\(name)",
+                deploymentTarget: deploymentTarget,
+                infoPlist: infoPlist,
+                sources: sources,
+                resources: resources,
+                dependencies: dependencies
+            ),
+            Target(
+                name: "\(name)Tests",
+                platform: platform,
+                product: .unitTests,
+                bundleId: "\(organizationName).\(name)Tests",
+                deploymentTarget: deploymentTarget,
+                infoPlist: .default,
+                sources: ["Tests/**"],
+                dependencies: [.target(name: name)]
+            )
+        ]
         
         return Project(
             name: name,
@@ -58,17 +51,25 @@ public extension Project {
     }
 }
 
-extension Scheme {
-    static func makeScheme(target: ConfigurationName, name: String) -> Scheme {
+extension Scheme {    
+    public static func makeScheme(
+        name: String,
+        environment: String,
+        target: ConfigurationName,
+        hasTestAction: Bool = false
+    ) -> Scheme {
+        var testAction: ProjectDescription.TestAction?
+        testAction = .targets(
+            ["\(name)Tests"],
+            configuration: target,
+            options: .options(coverage: true, codeCoverageTargets: ["\(name)"])
+        )
+        
         return Scheme(
-            name: name,
+            name: "\(name)-\(environment)",
             shared: true,
             buildAction: .buildAction(targets: ["\(name)"]),
-            testAction: .targets(
-                ["\(name)Tests"],
-                configuration: target,
-                options: .options(coverage: true, codeCoverageTargets: ["\(name)"])
-            ),
+            testAction: testAction,
             runAction: .runAction(configuration: target),
             archiveAction: .archiveAction(configuration: target),
             profileAction: .profileAction(configuration: target),

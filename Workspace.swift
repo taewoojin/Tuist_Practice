@@ -10,8 +10,7 @@ import ProjectDescription
 let workspace = Workspace(
     name: "App",
     projects: [
-        "Projects/App",
-        "Projects/Feature",
+        "Projects/App"
     ],
     generationOptions: .options(
         enableAutomaticXcodeSchemes: false,
