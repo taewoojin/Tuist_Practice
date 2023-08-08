@@ -39,7 +39,8 @@ let project = Project.makeModule(
         ),
     ],
     dependencies: [
-        .Project.ThirdPartyLibrary
+        .Project.thirdPartyLibrary,
+        .Project.designSystem
     ],
     resources: ["Resources/**"]
 )

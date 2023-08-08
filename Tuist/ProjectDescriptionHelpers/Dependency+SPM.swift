@@ -12,8 +12,8 @@ public extension TargetDependency {
 }
 
 public extension TargetDependency.SPM {
-    static let CombineMoya = TargetDependency.external(name: "CombineMoya")
-    static let Moya = TargetDependency.external(name: "Moya")
-    static let SnapKit = TargetDependency.external(name: "SnapKit")
+    static let combineMoya = TargetDependency.external(name: "CombineMoya")
+    static let moya = TargetDependency.external(name: "Moya")
+    static let snapKit = TargetDependency.external(name: "SnapKit")
 }
 

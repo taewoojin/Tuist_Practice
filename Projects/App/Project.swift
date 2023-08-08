@@ -39,7 +39,7 @@ let project = Project.makeModule(
         ),
     ],
     dependencies: [
-        .Project.Feature
+        .Project.feature
     ],
     resources: ["Resources/**"]
 )

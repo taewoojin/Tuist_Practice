@@ -30,8 +30,8 @@ let project = Project.makeModule(
         )
     ],
     dependencies: [
-        .SPM.CombineMoya,
-        .SPM.Moya,
-        .SPM.SnapKit
+        .SPM.combineMoya,
+        .SPM.moya,
+        .SPM.snapKit
     ]
 )

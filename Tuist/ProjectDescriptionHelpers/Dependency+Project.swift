@@ -12,6 +12,16 @@ public extension TargetDependency {
 }
 
 public extension TargetDependency.Project {
-    static let Feature = TargetDependency.project(target: "Feature", path: .relativeToRoot("Projects/Feature"))
-    static let ThirdPartyLibrary = TargetDependency.project(target: "ThirdPartyLibrary", path: .relativeToRoot("Projects/ThirdPartyLibrary"))
+    static let feature = TargetDependency.project(
+        target: "Feature",
+        path: .relativeToRoot("Projects/Feature")
+    )
+    static let thirdPartyLibrary = TargetDependency.project(
+        target: "ThirdPartyLibrary",
+        path: .relativeToRoot("Projects/ThirdPartyLibrary")
+    )
+    static let designSystem = TargetDependency.project(
+        target: "DesignSystem",
+        path: .relativeToRoot("Projects/DesignSystem")
+    )
 }
