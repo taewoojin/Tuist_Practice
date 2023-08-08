@@ -40,7 +40,8 @@ let project = Project.makeModule(
     ],
     dependencies: [
         .Project.thirdPartyLibrary,
-        .Project.designSystem
+        .Project.designSystem,
+        .Project.network
     ],
     resources: ["Resources/**"]
 )

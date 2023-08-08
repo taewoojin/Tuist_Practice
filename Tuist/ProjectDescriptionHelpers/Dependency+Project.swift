@@ -24,4 +24,8 @@ public extension TargetDependency.Project {
         target: "DesignSystem",
         path: .relativeToRoot("Projects/DesignSystem")
     )
+    static let network = TargetDependency.project(
+        target: "Network",
+        path: .relativeToRoot("Projects/Network")
+    )
 }
